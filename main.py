@@ -33,14 +33,15 @@ for file in files:
 
     canvas.create_image(photo.width / 2, photo.height / 2, image=img_tk)
     canvas.create_image(photo.width * 0.9, photo.height * 0.9, image=watermark_resized_tk)
-    canvas.pack()
+    canvas.grid(row=0,column=0)
     #zawsze canvas update
     canvas.update()
     canvas.postscript(file="canvas_output.ps", colormode='color')
     ps_image = Image.open("canvas_output.ps")
     file_without_extension=file.split('.')[0]
-    extension=file.split('.')[1].upper()
-    ps_image.save(f'outputs/{file_without_extension}',format=extension)
+    extension=file.split('.')[1].lower()
+    ps_image.save(f'outputs/{file_without_extension}_marked.{extension}')
+    window.quit()
 
 os.remove('canvas_output.ps')
 
