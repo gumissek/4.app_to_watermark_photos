@@ -16,21 +16,16 @@ for file in files:
     # print(file.split('.')[0])
 
     window = Tk()
-    window.title('Watermarking app')
 
     photo = Image.open(f'photos_to_watermark/{file}').convert('RGBA')
     img_tk = ImageTk.PhotoImage(photo)
-    window.config(width=photo.width,height=photo.height)
 
     watermark = Image.open('watermark/watermark.png').convert('RGBA')
     watermark_resized = watermark.resize((int(0.2 * photo.width), int(0.2 * photo.height)))
     watermark_resized_tk = ImageTk.PhotoImage(watermark_resized)
 
-    #to zapisuje tylko do 1x1 pixel kurwicy dostane
-    # juz nie zapisuje :3 3h w plecy
     canvas = Canvas(width=photo.width, height=photo.height)
     canvas.config(highlightthickness=0)
-
     canvas.create_image(photo.width / 2, photo.height / 2, image=img_tk)
     canvas.create_image(photo.width * 0.9, photo.height * 0.9, image=watermark_resized_tk)
     canvas.grid(row=0,column=0)
