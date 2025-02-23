@@ -5,6 +5,7 @@
 # MacOS
 # brew install python-tk
 
+
 from tkinter import *
 from PIL import Image, ImageTk
 from pathlib import Path
@@ -13,7 +14,6 @@ folder_path = Path('photos_to_watermark')
 files = [file.name for file in folder_path.iterdir() if file.is_file() ]
 
 for file in files:
-    # print(file.split('.')[0])
 
     window = Tk()
 
