@@ -11,16 +11,20 @@ from PIL import Image, ImageTk
 from pathlib import Path
 import os
 folder_path = Path('photos_to_watermark')
-files = [file.name for file in folder_path.iterdir() if file.is_file() ]
+photos = [file.name for file in folder_path.iterdir() if file.is_file() ]
+folder_path_watermark=Path('watermark')
+watermarks =[file.name for file in folder_path_watermark.iterdir() if file.is_file() ]
+watermark = watermarks[0]
 
-for file in files:
+
+for file in photos:
 
     window = Tk()
 
     photo = Image.open(f'photos_to_watermark/{file}').convert('RGBA')
     img_tk = ImageTk.PhotoImage(photo)
 
-    watermark = Image.open('watermark/watermark.png').convert('RGBA')
+    watermark = Image.open(f'watermark/{watermark}').convert('RGBA')
     watermark_resized = watermark.resize((int(0.2 * photo.width), int(0.2 * photo.height)))
     watermark_resized_tk = ImageTk.PhotoImage(watermark_resized)
 
